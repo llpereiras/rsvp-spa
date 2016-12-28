@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { Ng2Webstorage } from 'ng2-webstorage';
 
 //----------------------------------------------------------------------------
 //Components
@@ -16,21 +16,19 @@ import { HomeComponent } from './modules/home/home.component';
 import { EventoComponent } from './modules/eventos/eventos.component';
 import { LoginComponent } from './modules/auth/login.component';
 
-
 //----------------------------------------------------------------------------
 //Services
 //----------------------------------------------------------------------------
 import { ApiConfig } from './config/api.config';
 import { ApiService } from './service/api.service';
 
-
 //----------------------------------------------------------------------------
 //Routes
 //----------------------------------------------------------------------------
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'eventos', component: EventoComponent },
+  { path: 'login', component: LoginComponent},
+  { path: 'eventos', component: EventoComponent},
 ];
 
 
@@ -46,7 +44,8 @@ export const AppRoutes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(AppRoutes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2Webstorage
   ],
   providers: [ApiService, ApiConfig],
   bootstrap: [AppComponent]

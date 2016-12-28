@@ -3,15 +3,20 @@
 </h1>
 
 <ul class="nav navbar-nav navbar-right">
-    <li class="page-scroll">
-      <a routerLink="/">Home</a>
-    </li>
-    <li class="page-scroll">
-        <a routerLink="/login" >Login</a>
-    </li>
-    <li class="page-scroll">
+    <div *ngIf="usuario_logado">
+      <li class="page-scroll">
+        <a routerLink="/">Home</a>
+      </li>
+      <li class="page-scroll">
         <a routerLink="/eventos" >Eventos</a>
-    </li>
+      </li>
+      <li class="page-scroll">
+        <a routerLink="/convidados" >Convidados</a>
+      </li>
+      <li class="page-scroll">
+        <a routerLink="/logout" >Sair</a>
+      </li>
+    </div>
 </ul>
 
 <router-outlet></router-outlet>
