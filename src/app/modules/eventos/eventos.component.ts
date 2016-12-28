@@ -4,5 +4,5 @@ import { Component } from '@angular/core';
   templateUrl: './eventos.component.html'
 })
 export class EventoComponent {
-  title = 'Eventos!';
+  title = 'Eventos';
 }
