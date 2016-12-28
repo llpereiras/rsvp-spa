@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
-import {  } from '@angular/http';
-import { Http, Headers, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/map';
-import { Observable } from "rxjs/Observable";
+import { ApiService } from './service/api.service'
 
 @Component({
   templateUrl: './login.component.html'
@@ -17,34 +14,28 @@ export class LoginComponent {
 
   formLogin: FormGroup;
 
+  private api: ApiService;
+
   public session = { "status": "Não logado" };
 
-  private apiUrl = 'https://hacker-news.firebaseio.com/v0/item/1000.json';  // URL to web API
-
-  constructor(private router: Router, fb: FormBuilder, private http: Http){
+  constructor(private router: Router, fb: FormBuilder, api: ApiService){
+    this.api = api;
     this.formLogin = fb.group({
-        "username": [null, Validators.required],
+        "email": [null, Validators.required],
         "password": [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(10)]) ]
     });
   }
 
   logar(){
-    console.log(this.formLogin);
-    this.user = this.formLogin.value;
-    console.log(this.user);
-
-    this.getAuthenticate().subscribe(
+    this.api.authenticate(this.formLogin.value).subscribe(
       (data: any) => {
         this.session = data;
       },
-      err => {console.log(err.status); console.log(err)},
+      err => { if (err.status == 401) { alert('Login inválido! Tente novamente.'); }},
       () => console.log('Login efetuado com sucesso') // complete
     );
   }
 
-  getAuthenticate () {
-    return this.http.get(this.apiUrl)
-      .map((data: any) => data.json());
-  }
+
 
 }

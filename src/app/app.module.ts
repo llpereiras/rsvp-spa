@@ -8,18 +8,25 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 
+import { HomeComponent } from './home.component';
 import { EventoComponent } from './evento.component';
 import { LoginComponent } from './login.component';
 
+import { ApiService } from './service/api.service';
+
+import { Config } from './config/config'
+
 export const AppRoutes: Routes = [
-  { path: '', component: EventoComponent },
-  { path: 'login', component: LoginComponent }
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'eventos', component: EventoComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     EventoComponent,
+    HomeComponent,
     LoginComponent
   ],
   imports: [
@@ -29,7 +36,7 @@ export const AppRoutes: Routes = [
     RouterModule.forRoot(AppRoutes),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ApiService, {provide: Config, useValue: }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
