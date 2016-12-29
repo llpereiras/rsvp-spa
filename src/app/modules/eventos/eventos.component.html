@@ -1,3 +1,22 @@
 <h1>
   {{title}}
 </h1>
+
+<table border='1'>
+  <thead>
+    <th>Id</th>
+    <th>Nome</th>
+    <th>Data</th>
+    <th>Vigente</th>
+  </thead>
+  <tbody *ngFor="let evento of eventos; let myIndex = index">
+    <tr>
+      <td>{{evento.id}}</td>
+      <td>{{evento.nome}}</td>
+      <td>{{evento.data}}</td>
+      <td>{{evento.vigente}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<button>Novo</button>
