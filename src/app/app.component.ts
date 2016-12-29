@@ -1,4 +1,4 @@
-import { Component  } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router }  from '@angular/router';
 import { SessionStorageService } from 'ng2-webstorage';
 import { Injectable} from '@angular/core';
@@ -9,12 +9,11 @@ import { Injectable} from '@angular/core';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Sistema RSVP';
   usuario_logado: boolean;
 
   constructor(private sessionSt:SessionStorageService, private router: Router) {
     this.usuario_logado = false;
-    console.log(this.usuario_logado);
   }
 
   ngOnInit() {
@@ -25,5 +24,10 @@ export class AppComponent {
       }
       this.usuario_logado = true;
     });
+  }
+
+  deslogar(){
+    this.sessionSt.clear("token");
+    this.router.navigate(['login']);
   }
 }

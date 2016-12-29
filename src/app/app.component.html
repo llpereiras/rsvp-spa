@@ -1,7 +1,3 @@
-<h1>
-  {{title}}
-</h1>
-
 <ul class="nav navbar-nav navbar-right">
     <div *ngIf="usuario_logado">
       <li class="page-scroll">
@@ -14,7 +10,7 @@
         <a routerLink="/convidados" >Convidados</a>
       </li>
       <li class="page-scroll">
-        <a routerLink="/logout" >Sair</a>
+        <a href="#" on-click="deslogar()" >Sair</a>
       </li>
     </div>
 </ul>
