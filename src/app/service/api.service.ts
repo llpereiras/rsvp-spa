@@ -22,10 +22,39 @@ export class ApiService {
     headers.append('Authorization', 'Basic ' + `AUTH-BASIC ${token}`);
   }
 
-  public getEventos () {
+  public getEventos (evento_id = 0) {
+    let headers = new Headers();
+    let url = this.apiConfig.url + this.apiConfig.endpoints.eventos;
+    if ( evento_id > 0 ) url = url + '/' + evento_id;
+    this.createAuthorizationHeader(headers);
+    return this.http.get(url, {
+        headers: headers
+      })
+      .map((data: any) => data.json());
+  }
+
+  public createEventos (evento) {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
-    return this.http.get(this.apiConfig.url + this.apiConfig.endpoints.eventos, {
+    return this.http.post(this.apiConfig.url + this.apiConfig.endpoints.eventos, evento, {
+        headers: headers
+      })
+      .map((data: any) => data.json());
+  }
+
+  public updateEventos (evento) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.put(this.apiConfig.url + this.apiConfig.endpoints.eventos + '/' + evento.evento.id, evento, {
+        headers: headers
+      })
+      .map((data: any) => data.json());
+  }
+
+  public deleteEventos (evento_id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.delete(this.apiConfig.url + this.apiConfig.endpoints.eventos + '/' + evento_id, {
         headers: headers
       })
       .map((data: any) => data.json());
