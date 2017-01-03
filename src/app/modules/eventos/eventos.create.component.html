@@ -1,0 +1,21 @@
+<h1>
+  {{title}}
+</h1>
+
+<form [formGroup]="formEvento" (ngSubmit)="save()" class="well">
+  <input type="text" class="form-control" placeholder="id" formControlName="id">
+  <label>Nome:</label>
+  <input type="text" class="form-control" placeholder="nome" formControlName="nome">
+  <br>
+  <label>Data:</label>
+  <input type="text" [textMask]="{mask: mask}" class="form-control" placeholder="data" formControlName="data">
+  <br>
+  <label>Vigente:</label>
+  <select formControlName="vigente" class="form-control" >
+    <option value="ativo" selected="ativo">Ativo</option>
+    <option value="inativo">Inativo</option>
+  </select>
+
+  <br>
+  <button type="submit" [disabled]="!formEvento.valid" class="btn btn-success">Salvar</button>
+</form>
