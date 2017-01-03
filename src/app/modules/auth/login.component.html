@@ -1,13 +1,10 @@
 <h1>{{title}}</h1>
-<form [formGroup]="formLogin" (ngSubmit)="logar()">
+<form [formGroup]="formLogin" (ngSubmit)="logar()" class="well">
   <label>Username:</label>
   <input type="text" class="form-control" placeholder="email" formControlName="email">
   <br>
   <label>Password:</label>
   <input type="password" class="form-control" placeholder="password" formControlName="password">
   <br>
-  <button type="submit" [disabled]="!formLogin.valid"> Logar</button>
+  <button type="submit" [disabled]="!formLogin.valid" class="btn btn-success"> Logar</button>
 </form>
-
-Logado sim ou nao: <br>
-{{session | json}}
