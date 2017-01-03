@@ -7,6 +7,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2Webstorage } from 'ng2-webstorage';
+import { TextMaskModule } from 'angular2-text-mask';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 //----------------------------------------------------------------------------
 //Components
@@ -14,7 +16,11 @@ import { Ng2Webstorage } from 'ng2-webstorage';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './modules/home/home.component';
 import { EventoComponent } from './modules/eventos/eventos.component';
+import { EventoCreateComponent } from './modules/eventos/eventos.create.component';
+import { EventoUpdateComponent } from './modules/eventos/eventos.update.component';
 import { LoginComponent } from './modules/auth/login.component';
+import { EventosStatusPipe } from './pipes/eventos.status';
+import { CapitalizePipe } from './pipes/capitalize';
 
 //----------------------------------------------------------------------------
 //Services
@@ -26,9 +32,11 @@ import { ApiService } from './service/api.service';
 //Routes
 //----------------------------------------------------------------------------
 export const AppRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
   { path: 'eventos', component: EventoComponent},
+  { path: 'eventos/new', component: EventoCreateComponent},
+  { path: 'eventos/:id', component: EventoUpdateComponent},
 ];
 
 
@@ -36,8 +44,12 @@ export const AppRoutes: Routes = [
   declarations: [
     AppComponent,
     EventoComponent,
+    EventoCreateComponent,
+    EventoUpdateComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    EventosStatusPipe,
+    CapitalizePipe
   ],
   imports: [
     BrowserModule,
@@ -45,7 +57,9 @@ export const AppRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(AppRoutes),
     ReactiveFormsModule,
-    Ng2Webstorage
+    Ng2Webstorage,
+    TextMaskModule,
+    FlashMessagesModule
   ],
   providers: [ApiService, ApiConfig],
   bootstrap: [AppComponent]
