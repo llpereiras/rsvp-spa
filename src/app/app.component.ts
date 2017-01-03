@@ -11,6 +11,7 @@ import { Injectable} from '@angular/core';
 export class AppComponent {
   title = 'Sistema RSVP';
   usuario_logado: boolean;
+  usuario_nome = '';
 
   constructor(private sessionSt:SessionStorageService, private router: Router) {
     this.usuario_logado = false;
@@ -23,6 +24,7 @@ export class AppComponent {
         return false;
       }
       this.usuario_logado = true;
+      this.usuario_nome = this.sessionSt.retrieve('token').user.email;
     });
   }
 
