@@ -19,8 +19,7 @@ export class EventoComponent {
       (data: any) => {
         this.eventos = data;
       },
-      err => { if (err.status == 401) { alert('Impossível obter os dados! Tente novamente.'); }},
-      () => console.log('Listando eventos.') // complete
+      err => { if (err.status == 401) { alert('Impossível obter os dados! Tente novamente.'); }}
     );
   }
 
