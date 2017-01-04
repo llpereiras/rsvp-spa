@@ -18,6 +18,7 @@ import { HomeComponent } from './modules/home/home.component';
 import { EventoComponent } from './modules/eventos/eventos.component';
 import { EventoCreateComponent } from './modules/eventos/eventos.create.component';
 import { EventoUpdateComponent } from './modules/eventos/eventos.update.component';
+import { EventoForm } from './modules/eventos/evento.form';
 import { LoginComponent } from './modules/auth/login.component';
 import { EventosStatusPipe } from './pipes/eventos.status';
 import { CapitalizePipe } from './pipes/capitalize';
@@ -61,7 +62,7 @@ export const AppRoutes: Routes = [
     TextMaskModule,
     FlashMessagesModule
   ],
-  providers: [ApiService, ApiConfig],
+  providers: [ApiService, ApiConfig, EventoForm],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
