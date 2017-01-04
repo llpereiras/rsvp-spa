@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ApiService } from './../../service/api.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ActivatedRoute } from '@angular/router';
-import * as moment from 'moment';
+import { EventoForm } from './evento.form';
 
 @Component({
   templateUrl: './eventos.create.component.html'
@@ -12,44 +11,27 @@ import * as moment from 'moment';
 export class EventoUpdateComponent {
   title = 'Evento Novo';
   evento: any = {};
-  formEvento: FormGroup;
+  formEvento: any;
   private api: ApiService;
   public mask = [/[1-9]/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
 
-  constructor(api: ApiService, fb: FormBuilder, private _flashMessagesService: FlashMessagesService, private route: ActivatedRoute){
+  constructor(api: ApiService, eventoform:EventoForm, private _flashMessagesService: FlashMessagesService, private route: ActivatedRoute){
     this.api = api;
-    this.evento.id = "";
-    this.evento.nome = "";
-    this.evento.data = "";
-    this.evento.vigente = "inativo";
     this.route.params
     .map(params => params['id'])
     .subscribe((id) => {
       this.api.getEventos(id).subscribe(
         (evento: any) => {
-          this.evento = evento;
-          this.formEvento.controls['id'].setValue(evento.id)
-          this.formEvento.controls['nome'].setValue(evento.nome)
-          this.formEvento.controls['data'].setValue(evento.data)
-          this.formEvento.controls['vigente'].setValue(evento.vigente)
+          this.formEvento = eventoform.populate(evento);
         },
-        err => { if (err.status == 401) { alert('Impossível obter os dados! Tente novamente.'); }},
-        () => console.log('Buscando evento n: ' + id) // complete
+        err => { if (err.status == 401) { alert('Impossível obter os dados! Tente novamente.'); }}
       );
-      console.log(this.evento.nome)
-      this.formEvento = fb.group({
-        "id": [null],
-        "nome": [null, Validators.required],
-        "data": [null, Validators.required],
-        "vigente": [null, Validators.required]
-      });
+      this.formEvento = eventoform.getForm();
     });
   }
 
   save () {
-    this.evento = this.formEvento.value;
-    console.log(this.evento)
-    this.evento = {"evento": this.evento};
+    this.evento = {"evento": this.formEvento.value};
     this.api.updateEventos(this.evento).subscribe(
       (data: any) => {
         this._flashMessagesService.show('Evento salvo com sucesso!', { cssClass: 'alert-success', timeout: 5000 });
@@ -67,8 +49,7 @@ export class EventoUpdateComponent {
           }
           return false;
         }
-      },
-      () => console.log('Listando eventos.') // complete
+      }
     );
   }
 

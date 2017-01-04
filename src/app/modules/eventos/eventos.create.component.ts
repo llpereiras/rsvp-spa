@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ApiService } from './../../service/api.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import * as moment from 'moment';
+import { EventoForm } from './evento.form';
 
 @Component({
   templateUrl: './eventos.create.component.html'
@@ -11,27 +10,17 @@ import * as moment from 'moment';
 export class EventoCreateComponent {
   title = 'Evento Novo';
   evento: any = {};
-  formEvento: FormGroup;
+  formEvento: any;
   private api: ApiService;
   public mask = [/[1-9]/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
 
-  constructor(api: ApiService, fb: FormBuilder, private _flashMessagesService: FlashMessagesService){
+  constructor(api: ApiService, eventoform:EventoForm, private _flashMessagesService: FlashMessagesService){
     this.api = api;
-    this.evento.id = "";
-    this.evento.nome = "";
-    this.evento.data = "";
-    this.evento.vigente = "inativo";
-    this.formEvento = fb.group({
-        "id": [null],
-        "nome": [null, Validators.required],
-        "data": [null, Validators.required],
-        "vigente": ['inativo', Validators.required]
-    });
+    this.formEvento = eventoform.getForm();
   }
 
   save () {
-    this.evento = this.formEvento.value;
-    this.evento = {"evento": this.evento};
+    this.evento = {"evento": this.formEvento.value};
     this.api.createEventos(this.evento).subscribe(
       (data: any) => {
         this._flashMessagesService.show('Evento salvo com sucesso!', { cssClass: 'alert-success', timeout: 5000 });
@@ -49,8 +38,7 @@ export class EventoCreateComponent {
           }
           return false;
         }
-      },
-      () => console.log('Listando eventos.') // complete
+      }
     );
   }
 
