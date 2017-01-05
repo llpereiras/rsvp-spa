@@ -1,22 +1,19 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ApiService } from './../../service/api.service';
-import { SessionStorageService } from 'ng2-webstorage';
+
+import { BaseComponent } from './../base.component';
 
 @Component({
   templateUrl: './login.component.html'
 })
 
-export class LoginComponent {
+export class LoginComponent extends BaseComponent{
   title = 'Login';
   user: Object = {};
   formLogin: FormGroup;
-  private api: ApiService;
-  public session = { "status": "Não logado" };
 
-  constructor(private router: Router, fb: FormBuilder, api: ApiService, private sessionSt:SessionStorageService){
-    this.api = api;
+  constructor(fb: FormBuilder){
+    super();
     this.formLogin = fb.group({
         "email": [null, Validators.required],
         "password": [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(24)]) ]
@@ -25,14 +22,15 @@ export class LoginComponent {
 
   logar(){
     this.user = this.formLogin.value;
+    this.saving = true;
+
     this.api.authenticate(this.user).subscribe(
       (data: any) => {
-        this.session = data;
         this.sessionSt.store("token", data);
         this.router.navigate(['eventos']);
       },
       err => { if (err.status == 401) { alert('Login inválido! Tente novamente.'); }},
-      () => console.log('Login efetuado com sucesso') // complete
+      () => {this.saving = false; console.log('Login efetuado com sucesso');} // complete
     );
   }
 
