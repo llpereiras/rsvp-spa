@@ -19,7 +19,7 @@ export class ApiService {
 
   public createAuthorizationHeader(headers: Headers) {
     let token = this.sessionSt.retrieve("token").auth_token;
-    headers.append('Authorization', 'Basic ' + `AUTH-BASIC ${token}`);
+    headers.append('Authorization', `Basic AUTH-BASIC ${token}`);
   }
 
   public getEventos (evento_id = 0) {
