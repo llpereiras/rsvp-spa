@@ -14,6 +14,9 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 //Components
 //----------------------------------------------------------------------------
 import { AppComponent } from './app.component';
+import { Injector } from "@angular/core";
+import { ServiceLocator } from './service_locator';
+import { BaseComponent } from './modules/base.component'
 import { HomeComponent } from './modules/home/home.component';
 import { EventoComponent } from './modules/eventos/eventos.component';
 import { EventoCreateComponent } from './modules/eventos/eventos.create.component';
@@ -62,7 +65,11 @@ export const AppRoutes: Routes = [
     TextMaskModule,
     FlashMessagesModule
   ],
-  providers: [ApiService, ApiConfig, EventoForm],
+  providers: [ApiService, ApiConfig, BaseComponent, EventoForm],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector: Injector) {
+    ServiceLocator.injector = this.injector;
+  }
+}
