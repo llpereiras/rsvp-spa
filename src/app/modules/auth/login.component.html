@@ -6,5 +6,8 @@
   <label>Password:</label>
   <input type="password" class="form-control" placeholder="password" formControlName="password">
   <br>
-  <button type="submit" [disabled]="!formLogin.valid" class="btn btn-success"> Logar</button>
+  <button type="submit" [disabled]="!formLogin.valid" class="btn btn-success">
+    Logar
+    <i class="fa fa-spinner fa-spin" *ngIf="saving"></i>
+  </button>
 </form>
