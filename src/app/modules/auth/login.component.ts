@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
 import { BaseComponent } from './../base.component';
+import { LoginForm } from './login.form';
 
 @Component({
   templateUrl: './login.component.html'
@@ -10,14 +9,11 @@ import { BaseComponent } from './../base.component';
 export class LoginComponent extends BaseComponent{
   title = 'Login';
   user: Object = {};
-  formLogin: FormGroup;
+  formLogin: any;
 
-  constructor(fb: FormBuilder){
+  constructor(loginform: LoginForm){
     super();
-    this.formLogin = fb.group({
-        "email": [null, Validators.required],
-        "password": [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(24)]) ]
-    });
+    this.formLogin = loginform.getForm();
   }
 
   logar(){
