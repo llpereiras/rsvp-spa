@@ -23,6 +23,7 @@ import { EventoCreateComponent } from './modules/eventos/eventos.create.componen
 import { EventoUpdateComponent } from './modules/eventos/eventos.update.component';
 import { EventoForm } from './modules/eventos/evento.form';
 import { LoginComponent } from './modules/auth/login.component';
+import { LoginForm } from './modules/auth/login.form';
 import { EventosStatusPipe } from './pipes/eventos.status';
 import { CapitalizePipe } from './pipes/capitalize';
 
@@ -65,7 +66,7 @@ export const AppRoutes: Routes = [
     TextMaskModule,
     FlashMessagesModule
   ],
-  providers: [ApiService, ApiConfig, BaseComponent, EventoForm],
+  providers: [ApiService, ApiConfig, BaseComponent, EventoForm, LoginForm],
   bootstrap: [AppComponent]
 })
 export class AppModule {
