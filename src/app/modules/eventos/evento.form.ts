@@ -8,9 +8,7 @@ export class EventoForm {
   public fb: FormBuilder;
 
   constructor(public builder: FormBuilder ) {
-
     this.fb = builder;
-
   }
 
   getForm() {
