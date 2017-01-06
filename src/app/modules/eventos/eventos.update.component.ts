@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EventoForm } from './evento.form';
+import { EventoForm } from './eventos.form';
 import { BaseComponent } from './../base.component';
 import { ActivatedRoute } from '@angular/router';
 
