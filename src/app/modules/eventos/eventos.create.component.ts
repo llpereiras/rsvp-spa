@@ -12,7 +12,7 @@ export class EventoCreateComponent {
   evento: any = {};
   formEvento: any;
   private api: ApiService;
-  public mask = [/[1-9]/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
+  public mask = [/[0-9]/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
 
   constructor(api: ApiService, eventoform:EventoForm, private _flashMessagesService: FlashMessagesService){
     this.api = api;
