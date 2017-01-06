@@ -11,21 +11,34 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 
 //----------------------------------------------------------------------------
-//Components
+//Components Core
 //----------------------------------------------------------------------------
 import { AppComponent } from './app.component';
 import { Injector } from "@angular/core";
 import { ServiceLocator } from './service_locator';
-import { BaseComponent } from './modules/base.component'
+import { BaseComponent } from './modules/base.component';
+import { CapitalizePipe } from './pipes/capitalize';
+
+// Module Auth
+import { LoginComponent } from './modules/auth/login.component';
+import { LoginForm } from './modules/auth/login.form';
+
+// Module Home
 import { HomeComponent } from './modules/home/home.component';
+
+// Module Eventos
 import { EventoComponent } from './modules/eventos/eventos.component';
 import { EventoCreateComponent } from './modules/eventos/eventos.create.component';
 import { EventoUpdateComponent } from './modules/eventos/eventos.update.component';
-import { EventoForm } from './modules/eventos/evento.form';
-import { LoginComponent } from './modules/auth/login.component';
-import { LoginForm } from './modules/auth/login.form';
+import { EventoForm } from './modules/eventos/eventos.form';
 import { EventosStatusPipe } from './pipes/eventos.status';
-import { CapitalizePipe } from './pipes/capitalize';
+
+// Module Convidado
+import { ConvidadoComponent } from './modules/convidados/convidados.component';
+import { ConvidadoCreateComponent } from './modules/convidados/convidados.create.component';
+import { ConvidadoUpdateComponent } from './modules/convidados/convidados.update.component';
+import { ConvidadoForm } from './modules/convidados/convidados.form';
+
 
 //----------------------------------------------------------------------------
 //Services
@@ -42,19 +55,25 @@ export const AppRoutes: Routes = [
   { path: 'eventos', component: EventoComponent},
   { path: 'eventos/new', component: EventoCreateComponent},
   { path: 'eventos/:id', component: EventoUpdateComponent},
+  { path: 'convidados', component: ConvidadoComponent},
+  { path: 'convidados/new', component: ConvidadoCreateComponent},
+  { path: 'convidados/:id', component: ConvidadoUpdateComponent},
 ];
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    CapitalizePipe,
+    LoginComponent,
+    HomeComponent,
     EventoComponent,
     EventoCreateComponent,
     EventoUpdateComponent,
-    HomeComponent,
-    LoginComponent,
     EventosStatusPipe,
-    CapitalizePipe
+    ConvidadoComponent,
+    ConvidadoCreateComponent,
+    ConvidadoUpdateComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,9 +83,9 @@ export const AppRoutes: Routes = [
     ReactiveFormsModule,
     Ng2Webstorage,
     TextMaskModule,
-    FlashMessagesModule
+    FlashMessagesModule,
   ],
-  providers: [ApiService, ApiConfig, BaseComponent, EventoForm, LoginForm],
+  providers: [ApiService, ApiConfig, BaseComponent, LoginForm, EventoForm, ConvidadoForm],
   bootstrap: [AppComponent]
 })
 export class AppModule {
