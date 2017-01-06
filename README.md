@@ -1,6 +1,10 @@
 # RsvpSpa
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.22-1.
+This project is an application for controlling events with guest by events.
+
+I used Angular 2, JWT to authentication  to make this application
+
+This project was started with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.22-1.
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
