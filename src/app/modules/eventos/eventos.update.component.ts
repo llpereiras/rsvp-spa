@@ -1,23 +1,19 @@
 import { Component } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { ApiService } from './../../service/api.service';
-import { FlashMessagesService } from 'angular2-flash-messages';
-import { ActivatedRoute } from '@angular/router';
 import { EventoForm } from './evento.form';
+import { BaseComponent } from './../base.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  templateUrl: './eventos.create.component.html'
+  templateUrl: './eventos.save.html'
 })
-export class EventoUpdateComponent {
+export class EventoUpdateComponent extends BaseComponent {
   title = 'Evento Novo';
   evento: any = {};
   formEvento: any;
-  private api: ApiService;
-  public mask = [/[1-9]/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
 
-  constructor(api: ApiService, eventoform:EventoForm, private _flashMessagesService: FlashMessagesService, private route: ActivatedRoute){
-    this.api = api;
-    this.route.params
+  constructor(eventoform:EventoForm, activate_router: ActivatedRoute ){
+    super()
+    activate_router.params
     .map(params => params['id'])
     .subscribe((id) => {
       this.api.getEventos(id).subscribe(
@@ -31,12 +27,14 @@ export class EventoUpdateComponent {
   }
 
   save () {
+    this.saving = true;
     this.evento = {"evento": this.formEvento.value};
     this.api.updateEventos(this.evento).subscribe(
       (data: any) => {
         this._flashMessagesService.show('Evento salvo com sucesso!', { cssClass: 'alert-success', timeout: 5000 });
       },
       err => {
+        this.saving = false;
         if (err.status == 401) {
           alert('Impossível obter os dados! Tente novamente.');
           return false;
@@ -49,7 +47,8 @@ export class EventoUpdateComponent {
           }
           return false;
         }
-      }
+      },
+      () => {this.saving = false;} // complete
     );
   }
 
