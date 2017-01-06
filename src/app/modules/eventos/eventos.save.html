@@ -8,7 +8,7 @@
   <input type="text" class="form-control" placeholder="nome" formControlName="nome">
   <br>
   <label>Data:</label>
-  <input type="text" [textMask]="{mask: mask}" class="form-control" placeholder="data" formControlName="data">
+  <input type="text" [textMask]="{mask: data_mask}" class="form-control" placeholder="data" formControlName="data">
   <br>
   <label>Vigente:</label>
   <select formControlName="vigente" class="form-control" >
@@ -17,5 +17,8 @@
   </select>
 
   <br>
-  <button type="submit" [disabled]="!formEvento.valid" class="btn btn-success">Salvar</button>
+  <button type="submit" [disabled]="!formEvento.valid" class="btn btn-success" [disabled]="saving">
+    Salvar
+    <i class="fa fa-spinner fa-spin" *ngIf="saving"></i>
+  </button>
 </form>

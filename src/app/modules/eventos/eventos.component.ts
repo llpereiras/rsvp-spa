@@ -37,7 +37,6 @@ export class EventoComponent extends BaseComponent{
           setTimeout(() => {
             location.reload(); // Adicionado para forçar nova requisição e evitar cache
           }, 2000);
-
       },
       err => { if (err.status == 401) { alert('Impossível obter os dados! Tente novamente.'); }},
       () => console.log('Listando eventos.') // complete
