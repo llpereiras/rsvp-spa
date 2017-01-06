@@ -11,6 +11,7 @@ export class BaseComponent {
   protected _router: any;
   protected _sessionSt:any;
   protected _flashMessagesService:any;
+  public _data_mask = [/[0-9]/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
 
   constructor() {
     this._api = ServiceLocator.injector.get(ApiService);
@@ -33,6 +34,10 @@ export class BaseComponent {
 
   get flashMessagesService(): FlashMessagesService {
     return this._flashMessagesService;
+  }
+
+  get data_mask(): any {
+    return this._data_mask;
   }
 
 }
