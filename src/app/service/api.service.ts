@@ -22,10 +22,12 @@ export class ApiService {
     headers.append('Authorization', `Basic AUTH-BASIC ${token}`);
   }
 
-  public getEventos (evento_id = 0) {
+
+  // Abstratas
+  public getRecurso (recurso, recurso_id = 0) {
     let headers = new Headers();
-    let url = this.apiConfig.url + this.apiConfig.endpoints.eventos;
-    if ( evento_id > 0 ) url = url + '/' + evento_id;
+    let url = this.apiConfig.url + this.apiConfig.endpoints[recurso];
+    if ( recurso_id > 0 ) url = url + '/' + recurso_id;
     this.createAuthorizationHeader(headers);
     return this.http.get(url, {
         headers: headers
@@ -33,31 +35,69 @@ export class ApiService {
       .map((data: any) => data.json());
   }
 
-  public createEventos (evento) {
+  public createRecurso (recurso, dados) {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
-    return this.http.post(this.apiConfig.url + this.apiConfig.endpoints.eventos, evento, {
+    return this.http.post(this.apiConfig.url + this.apiConfig.endpoints[recurso], dados, {
         headers: headers
       })
       .map((data: any) => data.json());
   }
 
-  public updateEventos (evento) {
+  public updateRecurso (recurso, recurso_id, dados) {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
-    return this.http.put(this.apiConfig.url + this.apiConfig.endpoints.eventos + '/' + evento.evento.id, evento, {
+    return this.http.put(this.apiConfig.url + this.apiConfig.endpoints[recurso] + '/' + recurso_id, dados, {
         headers: headers
       })
       .map((data: any) => data.json());
   }
+
+  public deleteRecurso (recurso, recurso_id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.delete(this.apiConfig.url + this.apiConfig.endpoints[recurso] + '/' + recurso_id, {
+        headers: headers
+      })
+      .map((data: any) => data.json());
+  }
+
+
+  // Get
+  public getConvidados(convidado_id = 0){
+    return this.getRecurso('convidados', convidado_id)
+  }
+
+  public getEventos (evento_id = 0) {
+    return this.getRecurso('eventos', evento_id)
+  }
+
+  // Create
+  public createEventos (evento) {
+    return this.createRecurso('eventos', evento);
+  }
+
+  public createConvidados (convidado) {
+    return this.createRecurso('convidados', convidado);
+  }
+
+  // Update
+  public updateEventos (evento) {
+    return this.updateRecurso('eventos', evento.evento.id, evento);
+  }
+
+  public updateConvidados (convidado) {
+    return this.updateRecurso('convidados', convidado.convidado.id, convidado);
+  }
+
+  // Delete
 
   public deleteEventos (evento_id) {
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);
-    return this.http.delete(this.apiConfig.url + this.apiConfig.endpoints.eventos + '/' + evento_id, {
-        headers: headers
-      })
-      .map((data: any) => data.json());
+    return this.deleteRecurso('eventos', evento_id);
+  }
+
+  public deleteConvidados (convidado_id) {
+    return this.deleteRecurso('convidados', convidado_id);
   }
 
 }
