@@ -3,7 +3,7 @@
 </h1>
 
 <form [formGroup]="formEvento" (ngSubmit)="save()" class="well">
-  <input type="text" class="form-control" placeholder="id" formControlName="id">
+  <input type="hidden" class="form-control" placeholder="id" formControlName="id">
   <label>Nome:</label>
   <input type="text" class="form-control" placeholder="nome" formControlName="nome">
   <br>
