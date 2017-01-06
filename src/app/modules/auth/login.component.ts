@@ -26,7 +26,7 @@ export class LoginComponent extends BaseComponent{
         this.router.navigate(['eventos']);
       },
       err => { if (err.status == 401) { alert('Login inválido! Tente novamente.'); }},
-      () => {this.saving = false; console.log('Login efetuado com sucesso');} // complete
+      () => {this.saving = false;} // complete
     );
   }
 
