@@ -1,0 +1,20 @@
+<h1>
+  {{title}}
+</h1>
+
+<form [formGroup]="formConvidado" (ngSubmit)="save()" class="well">
+  <input type="hidden" class="form-control" placeholder="id" formControlName="id">
+  <label>Nome:</label>
+  <input type="text" class="form-control" placeholder="nome" formControlName="nome">
+  <br>
+  <label>Data:</label>
+  <input type="text" class="form-control" placeholder="email" formControlName="email">
+  <br>
+  <label>Telefone:</label>
+  <input type="text" class="form-control" placeholder="telefone" formControlName="telefone">
+  <br>
+  <button type="submit" [disabled]="!formConvidado.valid" class="btn btn-success" [disabled]="saving">
+    Salvar
+    <i class="fa fa-spinner fa-spin" *ngIf="saving"></i>
+  </button>
+</form>
