@@ -8,7 +8,8 @@ export class ApiConfig {
         this._endpoints = {
             login: '/auth_user',
             eventos: '/eventos',
-            convidados: '/convidados'
+            convidados: '/convidados',
+            credenciais: '/credenciais'
         };
     }
 

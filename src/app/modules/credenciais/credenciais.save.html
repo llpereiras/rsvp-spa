@@ -1,0 +1,14 @@
+<h1>
+  {{title}}
+</h1>
+
+<form [formGroup]="formCredencial" (ngSubmit)="save()" class="well">
+  <input type="hidden" class="form-control" placeholder="id" formControlName="id">
+  <label>Descrição:</label>
+  <input type="text" class="form-control" placeholder="descricao" formControlName="descricao">
+  <br>
+  <button type="submit" [disabled]="!formCredencial.valid" class="btn btn-success" [disabled]="saving">
+    Salvar
+    <i class="fa fa-spinner fa-spin" *ngIf="saving"></i>
+  </button>
+</form>

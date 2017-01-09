@@ -40,6 +40,11 @@ import { ConvidadoCreateComponent } from './modules/convidados/convidados.create
 import { ConvidadoUpdateComponent } from './modules/convidados/convidados.update.component';
 import { ConvidadoForm } from './modules/convidados/convidados.form';
 
+// Module Credencial
+import { CredencialComponent } from './modules/credenciais/credenciais.component';
+import { CredencialCreateComponent } from './modules/credenciais/credenciais.create.component';
+import { CredencialUpdateComponent } from './modules/credenciais/credenciais.update.component';
+import { CredencialForm } from './modules/credenciais/credenciais.form';
 
 //----------------------------------------------------------------------------
 //Services
@@ -53,12 +58,20 @@ import { ApiService } from './service/api.service';
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
+
   { path: 'eventos', component: EventoComponent},
   { path: 'eventos/new', component: EventoCreateComponent},
   { path: 'eventos/:id', component: EventoUpdateComponent},
+
   { path: 'convidados', component: ConvidadoComponent},
   { path: 'convidados/new', component: ConvidadoCreateComponent},
   { path: 'convidados/:id', component: ConvidadoUpdateComponent},
+
+  { path: 'credenciais', component: CredencialComponent},
+  { path: 'credenciais/new', component: CredencialCreateComponent},
+  { path: 'credenciais/:id', component: CredencialUpdateComponent},
+
+  { path: 'eventos/:id/add_convidado', component: EventoConvidadoComponent},
 ];
 
 
@@ -75,6 +88,9 @@ export const AppRoutes: Routes = [
     ConvidadoComponent,
     ConvidadoCreateComponent,
     ConvidadoUpdateComponent,
+    CredencialComponent,
+    CredencialCreateComponent,
+    CredencialUpdateComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +102,7 @@ export const AppRoutes: Routes = [
     TextMaskModule,
     FlashMessagesModule,
   ],
-  providers: [DatePipe, ApiService, ApiConfig, BaseComponent, LoginForm, EventoForm, ConvidadoForm],
+  providers: [DatePipe, ApiService, ApiConfig, BaseComponent, LoginForm, EventoForm, ConvidadoForm, CredencialForm],
   bootstrap: [AppComponent]
 })
 export class AppModule {

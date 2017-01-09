@@ -72,6 +72,10 @@ export class ApiService {
     return this.getRecurso('eventos', evento_id)
   }
 
+  public getCredenciais (credenciais_id = 0) {
+    return this.getRecurso('credenciais', credenciais_id)
+  }
+
   // Create
   public createEventos (evento) {
     return this.createRecurso('eventos', evento);
@@ -79,6 +83,10 @@ export class ApiService {
 
   public createConvidados (convidado) {
     return this.createRecurso('convidados', convidado);
+  }
+
+  public createCredenciais (credencial) {
+    return this.createRecurso('credenciais', credencial);
   }
 
   // Update
@@ -90,6 +98,10 @@ export class ApiService {
     return this.updateRecurso('convidados', convidado.convidado.id, convidado);
   }
 
+  public updateCredenciais (credencial) {
+    return this.updateRecurso('credenciais', credencial.credencial.id, credencial);
+  }
+
   // Delete
 
   public deleteEventos (evento_id) {
@@ -98,6 +110,10 @@ export class ApiService {
 
   public deleteConvidados (convidado_id) {
     return this.deleteRecurso('convidados', convidado_id);
+  }
+
+  public deleteCredenciais (credencial_id) {
+    return this.deleteRecurso('credenciais', credencial_id);
   }
 
 }

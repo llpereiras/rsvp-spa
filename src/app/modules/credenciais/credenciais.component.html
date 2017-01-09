@@ -1,0 +1,24 @@
+<h1>
+  {{title}}
+</h1>
+
+<table class="table table-hover table-condensed">
+  <thead>
+    <th>Id</th>
+    <th>Descricao</th>
+    <th>Ações</th>
+  </thead>
+  <tbody *ngFor="let credencial of credenciais; let myIndex = index">
+    <tr>
+      <td>{{credencial.id}}</td>
+      <td>{{credencial.descricao}}</td>
+      <td>
+        <button class="btn btn-info" on-click="editar(credencial.id)">Editar</button>
+        <button class="btn btn-danger" on-click="excluir(credencial.id)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<button class="btn btn-primary" on-click="new()">Nova</button>
