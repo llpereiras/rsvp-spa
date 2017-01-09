@@ -14,7 +14,7 @@
     <tr>
       <td>{{evento.id}}</td>
       <td>{{evento.nome}}</td>
-      <td>{{evento.data  | date:"MM/dd/yyyy" }}</td>
+      <td>{{evento.data  | date:"dd/MM/yyyy" }}</td>
       <td>
         <span class="{{evento.vigente | eventos_status}} col-md-4"><strong>{{evento.vigente | capitalize}}</strong></span>
       </td>
