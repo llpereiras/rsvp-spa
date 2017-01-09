@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2Webstorage } from 'ng2-webstorage';
 import { TextMaskModule } from 'angular2-text-mask';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { DatePipe } from '@angular/common';
 
 //----------------------------------------------------------------------------
 //Components Core
@@ -85,7 +86,7 @@ export const AppRoutes: Routes = [
     TextMaskModule,
     FlashMessagesModule,
   ],
-  providers: [ApiService, ApiConfig, BaseComponent, LoginForm, EventoForm, ConvidadoForm],
+  providers: [DatePipe, ApiService, ApiConfig, BaseComponent, LoginForm, EventoForm, ConvidadoForm],
   bootstrap: [AppComponent]
 })
 export class AppModule {
