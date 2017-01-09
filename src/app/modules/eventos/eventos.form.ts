@@ -1,5 +1,6 @@
-import {Injectable} from '@angular/core';
+import {Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Injectable()
 
@@ -7,8 +8,12 @@ export class EventoForm {
 
   public fb: FormBuilder;
 
-  constructor(public builder: FormBuilder ) {
+  constructor(public builder: FormBuilder, private datePipe: DatePipe ) {
     this.fb = builder;
+  }
+
+  transformDate(date) {
+    return this.datePipe.transform(date, "dd/MM/yyyy");
   }
 
   getForm() {
@@ -24,7 +29,7 @@ export class EventoForm {
     let formEvento = this.getForm();
     formEvento.controls['id'].setValue(evento.id)
     formEvento.controls['nome'].setValue(evento.nome)
-    formEvento.controls['data'].setValue(evento.data)
+    formEvento.controls['data'].setValue(this.transformDate(evento.data))
     formEvento.controls['vigente'].setValue(evento.vigente)
     return formEvento;
   }
