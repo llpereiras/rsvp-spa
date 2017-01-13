@@ -1,0 +1,49 @@
+<h1>
+  {{title}}
+</h1>
+
+<div class="well">
+  <label for="search_convidado">Pesquisar convidado</label>
+  <input class="form-control" [(ngModel)]="convidado_selecionado" auto-complete [source]="convidados" />
+  <label for="select_credencial">Selecione a credencial</label>
+  <select class="form-control" [(ngModel)]="credencial_selecionada">
+    <option *ngFor="let credencial of credenciais" [value]="credencial.id">{{credencial.descricao}}</option>
+  </select>
+  <button type="button" class="btn btn-success" on-click="add(evento_selecionado)" [disabled]="saving" >Adicionar</button>
+  <button type="button" class="btn btn-warning pull-right" on-click="convidado_selecionado = ''" >Limpar consulta</button>
+</div>
+
+<div class="row">
+  <div class="col-xs-4 col-xs-offset-4 col-sm-4 col-sm-offset-0 col-lg-4 col-lg-offset-0">
+    <h3 *ngIf="evento_selecionado">O evento acontecerá no dia {{evento_selecionado.data | date:"dd/MM/yyyy"}}</h3>
+    <h3>Abaixo os já convidados para o evento</h3>
+  </div>
+</div>
+<hr>
+<table class="table table-hover table-condensed">
+  <thead>
+    <th>Id</th>
+    <th colspan="3">Convidado</th>
+    <th>Credencial</th>
+    <th>Confirmado</th>
+    <th>Hora chegada</th>
+    <th>Observações</th>
+    <th>Ações</th>
+  </thead>
+  <tbody *ngFor="let ec of eventos_convidados">
+    <tr>
+      <td>{{ec.id}}</td>
+      <td>{{ec.convidado.nome}}</td>
+      <td>{{ec.convidado.email}}</td>
+      <td>{{ec.convidado.telefone}}</td>
+      <td>{{ec.credencial.descricao}}</td>
+      <td>{{ec.confirmado}}</td>
+      <td>{{ec.hora_chegada}}</td>
+      <td>{{ec.observacoes}}</td>
+      <td>
+        <button class="btn btn-info" on-click="editar(evento.id)">Editar</button>
+        <button class="btn btn-danger" on-click="excluir(evento.id)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
