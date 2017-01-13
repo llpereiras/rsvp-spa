@@ -19,14 +19,6 @@ export class CredencialComponent extends BaseComponent{
     );
   }
 
-  new () {
-    this.router.navigate(['credenciais/new']);
-  }
-
-  editar(convidado_id) {
-    this.router.navigate(['credenciais/' + convidado_id]);
-  }
-
   excluir(convidado_id) {
     let conf = confirm("Confirma exclusão do credencial " + convidado_id);
     if (!conf) return false;

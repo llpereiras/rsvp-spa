@@ -19,14 +19,6 @@ export class ConvidadoComponent extends BaseComponent{
     );
   }
 
-  new () {
-    this.router.navigate(['convidados/new']);
-  }
-
-  editar(convidado_id) {
-    this.router.navigate(['convidados/' + convidado_id]);
-  }
-
   excluir(convidado_id) {
     let conf = confirm("Confirma exclusão do convidado " + convidado_id);
     if (!conf) return false;

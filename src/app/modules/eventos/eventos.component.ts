@@ -19,14 +19,6 @@ export class EventoComponent extends BaseComponent{
     );
   }
 
-  new () {
-    this.router.navigate(['eventos/new']);
-  }
-
-  editar(evento_id) {
-    this.router.navigate(['eventos/' + evento_id]);
-  }
-
   excluir(evento_id) {
     let conf = confirm("Confirma exclusão do evento " + evento_id);
     if (!conf) return false;
@@ -41,10 +33,6 @@ export class EventoComponent extends BaseComponent{
       err => { if (err.status == 401) { alert('Impossível obter os dados! Tente novamente.'); }},
       () => console.log('Listando eventos.') // complete
     );
-  }
-
-  add_convidado_evento(evento_id){
-    this.router.navigate(['eventos/' + evento_id + '/add_convidado']);
   }
 
 }
