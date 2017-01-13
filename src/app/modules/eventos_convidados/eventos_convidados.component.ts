@@ -95,8 +95,30 @@ export class EventosConvidadosComponent extends BaseComponent{
   }
 
   excluir(evento_convidado_id) {
-    console.log(evento_convidado_id)
-    // this.router.navigate([`eventos/${evento_id}/add_convidado/edit/${evento_convidado_id}`]);
+    this.api.deleteEventosConvidados(evento_convidado_id).subscribe(
+      (data: any) => {
+        this.flashMessagesService.show('Evento salvo com sucesso!', { cssClass: 'alert-success', timeout: 5000 });
+        setTimeout(() => {
+          location.reload(); // Adicionado para forçar nova requisição e evitar cache
+        }, 2000);
+      },
+      err => {
+        this.saving = false;
+        if (err.status == 401) {
+          alert('Impossível obter os dados! Tente novamente.');
+          return false;
+        }
+        if (err.status == 422) {
+          this.flashMessagesService.show('Evento não foi salvo!', { cssClass: 'alert-warning', timeout: 5000 });
+          let response = JSON.parse(err._body);
+          for (let field of Object.keys(response)) {
+            this.flashMessagesService.show('Campo ' + field + ': ' + response[field], { cssClass: 'alert-danger', timeout: 10000 });
+          }
+          return false;
+        }
+      },
+      () => {this.saving = false;} // complete
+    );
   }
 
 }

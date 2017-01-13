@@ -111,7 +111,6 @@ export class ApiService {
   }
 
   // Delete
-
   public deleteEventos (evento_id) {
     return this.deleteRecurso('eventos', evento_id);
   }
@@ -124,4 +123,7 @@ export class ApiService {
     return this.deleteRecurso('credenciais', credencial_id);
   }
 
+  public deleteEventosConvidados (evento_convidado_id) {
+    return this.deleteRecurso('eventos_convidados', evento_convidado_id);
+  }
 }
