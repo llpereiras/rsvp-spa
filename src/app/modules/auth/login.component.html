@@ -1,10 +1,20 @@
 <h1>{{title}}</h1>
 <form [formGroup]="formLogin" (ngSubmit)="logar()" class="well">
-  <label>Username:</label>
-  <input type="text" class="form-control" placeholder="email" formControlName="email">
+  <label>Username</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fa fa-user" aria-hidden="true"></i>
+    </span>
+    <input type="text" class="form-control" placeholder="email" formControlName="email">
+  </div>
   <br>
-  <label>Password:</label>
-  <input type="password" class="form-control" placeholder="password" formControlName="password">
+  <label>Password</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fa fa-key" aria-hidden="true"></i>
+    </span>
+    <input type="password" class="form-control" placeholder="password" formControlName="password">
+  </div>
   <br>
   <button type="submit" [disabled]="!formLogin.valid" class="btn btn-success" [disabled]="saving">
     Logar
