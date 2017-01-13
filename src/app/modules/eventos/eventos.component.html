@@ -19,6 +19,7 @@
         <span class="{{evento.vigente | eventos_status}} col-md-4"><strong>{{evento.vigente | capitalize}}</strong></span>
       </td>
       <td>
+        <button class="btn btn-info" on-click="add_convidado_evento(evento.id)">+ Convidados</button>
         <button class="btn btn-info" on-click="editar(evento.id)">Editar</button>
         <button class="btn btn-danger" on-click="excluir(evento.id)">Excluir</button>
       </td>
@@ -27,4 +28,4 @@
 </table>
 
 
-<button class="btn btn-primary" on-click="new()">Novo</button>
+<button class="btn btn-primary" on-click="new()">Novo evento</button>
