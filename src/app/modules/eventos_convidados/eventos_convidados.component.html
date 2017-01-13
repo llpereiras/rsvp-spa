@@ -9,8 +9,14 @@
   <select class="form-control" [(ngModel)]="credencial_selecionada">
     <option *ngFor="let credencial of credenciais" [value]="credencial.id">{{credencial.descricao}}</option>
   </select>
-  <button type="button" class="btn btn-success" on-click="add(evento_selecionado)" [disabled]="saving" >Adicionar</button>
-  <button type="button" class="btn btn-warning pull-right" on-click="convidado_selecionado = ''" >Limpar consulta</button>
+  <br>
+  <button type="button" class="btn btn-success" on-click="add(evento_selecionado)" [disabled]="saving" >
+    <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Adicionar
+  </button>
+  <button type="button" class="btn btn-warning pull-right" on-click="convidado_selecionado = ''" >
+    <i class="fa fa-eraser" aria-hidden="true"></i>
+    Limpar consulta
+  </button>
 </div>
 
 <div class="row">
@@ -20,28 +26,61 @@
   </div>
 </div>
 <hr>
-<table class="table table-hover table-condensed">
-  <thead>
-    <th>Id</th>
-    <th colspan="3">Convidado</th>
-    <th>Credencial</th>
-    <th>Confirmado</th>
-    <th>Hora chegada</th>
-    <th>Observações</th>
-    <th>Ações</th>
-  </thead>
-  <tbody *ngFor="let ec of eventos_convidados">
+
+<div class="row">
+  <div class="btn badge"></div>
+</div>
+<table class="table table-hover table-condensed" *ngFor="let ec of eventos_convidados">
+  <tbody >
+    <tr class="success">
+      <td colspan="5" style="text-align: center;"> <strong> {{ec.convidado.nome}} </strong></td>
+      <td>
+        <button class="btn btn-info" routerLink="/convidados/{{ec.convidado.id}}">
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-danger" on-click="excluir(ec.id)">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir
+        </button>
+      </td>
+    </tr>
+    <tr class="convidado_info">
+      <td><strong>E-mail</strong></td>
+      <td><strong>Telefone</strong></td>
+      <td><strong>Credencial</strong></td>
+      <td><strong>Obs</strong>.</td>
+      <td><strong>Convites</strong></td>
+      <td><strong>Confirmado</strong>?</td>
+      <td><strong>Presença</strong></td>
+    </tr>
     <tr>
-      <td>{{ec.id}}</td>
-      <td>{{ec.convidado.nome}}</td>
       <td>{{ec.convidado.email}}</td>
       <td>{{ec.convidado.telefone}}</td>
       <td>{{ec.credencial.descricao}}</td>
-      <td>{{ec.confirmado}}</td>
-      <td>{{ec.hora_chegada}}</td>
       <td>{{ec.observacoes}}</td>
+      <td> convites X</td>
       <td>
-        <button class="btn btn-danger" on-click="excluir(ec.id)">Excluir</button>
+        <span *ngIf="ec.confirmado">{{ec.confirmado}}</span>
+        <span *ngIf="!ec.confirmado">
+          <button class="btn btn-success btn-xs">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            Confirmar
+          </button>
+        </span>
+      </td>
+      <td>
+        <span *ngIf="ec.hora_chegada">{{ec.hora_chegada}}</span>
+        <span *ngIf="!ec.hora_chegada">
+          <button class="btn btn-success btn-xs">
+            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+            Marcar presença</button>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="7">
+        <hr>
       </td>
     </tr>
   </tbody>
