@@ -18,6 +18,7 @@
 
   <br>
   <button type="submit" [disabled]="!formEvento.valid" class="btn btn-success" [disabled]="saving">
+    <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
     Salvar
     <i class="fa fa-spinner fa-spin" *ngIf="saving"></i>
   </button>

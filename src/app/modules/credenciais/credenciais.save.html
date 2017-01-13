@@ -8,6 +8,7 @@
   <input type="text" class="form-control" placeholder="descricao" formControlName="descricao">
   <br>
   <button type="submit" [disabled]="!formCredencial.valid" class="btn btn-success" [disabled]="saving">
+    <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
     Salvar
     <i class="fa fa-spinner fa-spin" *ngIf="saving"></i>
   </button>
