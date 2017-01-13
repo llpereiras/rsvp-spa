@@ -10,6 +10,7 @@ export class BaseComponent {
   protected _api: any;
   protected _router: any;
   protected _sessionSt:any;
+  protected title:string = '';
   protected _flashMessagesService:any;
   public _data_mask = [/[0-9]/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
 
