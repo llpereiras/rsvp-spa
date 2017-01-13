@@ -10,6 +10,7 @@ import { Ng2Webstorage } from 'ng2-webstorage';
 import { TextMaskModule } from 'angular2-text-mask';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { DatePipe } from '@angular/common';
+import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 
 //----------------------------------------------------------------------------
 //Components Core
@@ -46,6 +47,8 @@ import { CredencialCreateComponent } from './modules/credenciais/credenciais.cre
 import { CredencialUpdateComponent } from './modules/credenciais/credenciais.update.component';
 import { CredencialForm } from './modules/credenciais/credenciais.form';
 
+import { EventosConvidadosComponent } from './modules/eventos_convidados/eventos_convidados.component';
+
 //----------------------------------------------------------------------------
 //Services
 //----------------------------------------------------------------------------
@@ -71,7 +74,7 @@ export const AppRoutes: Routes = [
   { path: 'credenciais/new', component: CredencialCreateComponent},
   { path: 'credenciais/:id', component: CredencialUpdateComponent},
 
-  { path: 'eventos/:id/add_convidado', component: EventoConvidadoComponent},
+  { path: 'eventos/:id/add_convidado', component: EventosConvidadosComponent},
 ];
 
 
@@ -91,6 +94,7 @@ export const AppRoutes: Routes = [
     CredencialComponent,
     CredencialCreateComponent,
     CredencialUpdateComponent,
+    EventosConvidadosComponent
   ],
   imports: [
     BrowserModule,
@@ -101,8 +105,18 @@ export const AppRoutes: Routes = [
     Ng2Webstorage,
     TextMaskModule,
     FlashMessagesModule,
+    Ng2AutoCompleteModule
   ],
-  providers: [DatePipe, ApiService, ApiConfig, BaseComponent, LoginForm, EventoForm, ConvidadoForm, CredencialForm],
+  providers: [
+    DatePipe,
+    ApiService,
+    ApiConfig,
+    BaseComponent,
+    LoginForm,
+    EventoForm,
+    ConvidadoForm,
+    CredencialForm
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
