@@ -43,4 +43,8 @@ export class EventoComponent extends BaseComponent{
     );
   }
 
+  add_convidado_evento(evento_id){
+    this.router.navigate(['eventos/' + evento_id + '/add_convidado']);
+  }
+
 }
