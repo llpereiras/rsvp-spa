@@ -41,4 +41,10 @@ export class BaseComponent {
     return this._data_mask;
   }
 
+  recarregar_pagina(tempo_relogar: number = 2000){
+    setTimeout(() => {
+      location.reload(); // Adicionado para forçar nova requisição e evitar cache
+    }, tempo_relogar);
+  }
+
 }
