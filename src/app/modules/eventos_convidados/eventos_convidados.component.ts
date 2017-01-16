@@ -30,7 +30,7 @@ export class EventosConvidadosComponent extends BaseComponent{
         err => { if (err.status == 401) { alert('Impossível obter os dados do evento! Tente novamente.'); }}
       );
 
-      // Busca o evento selecionado
+      // Busca os convidados do evento selecionado
       this.api.getEventosConvidados().subscribe(
         (eventos_convidados: any) => {
           this.eventos_convidados = eventos_convidados;
@@ -59,18 +59,29 @@ export class EventosConvidadosComponent extends BaseComponent{
   }
 
   add (evento_selecionado) {
+
+    if (!this.convidado_selecionado) {
+      alert('Convidado não selecionado');
+      return false;
+    }
+
+    if (!this.credencial_selecionada) {
+      alert('Credencial não selecionada');
+      return false;
+    }
+
     this.saving = true;
     let evento_convidado = {
       "evento_convidado": {
         "evento_id": evento_selecionado.id,
         "credencial_id": this.credencial_selecionada,
-        "convidado_id": this.convidado_selecionado.split('|')[0]
+        "convidado_id":  this.convidado_selecionado.split('|')[0]
       }
     };
 
     this.api.createEventosConvidados(evento_convidado).subscribe(
       (data: any) => {
-        this.flashMessagesService.show('Evento salvo com sucesso!', { cssClass: 'alert-success', timeout: 5000 });
+        this.flashMessagesService.show('Convidado adicionado ao evento com sucesso!', { cssClass: 'alert-success', timeout: 5000 });
         this.recarregar_pagina();
       },
       err => {
