@@ -71,9 +71,7 @@ export class EventosConvidadosComponent extends BaseComponent{
     this.api.createEventosConvidados(evento_convidado).subscribe(
       (data: any) => {
         this.flashMessagesService.show('Evento salvo com sucesso!', { cssClass: 'alert-success', timeout: 5000 });
-        setTimeout(() => {
-          location.reload(); // Adicionado para forçar nova requisição e evitar cache
-        }, 2000);
+        this.recarregar_pagina();
       },
       err => {
         this.saving = false;
@@ -85,7 +83,7 @@ export class EventosConvidadosComponent extends BaseComponent{
           this.flashMessagesService.show('Evento não foi salvo!', { cssClass: 'alert-warning', timeout: 5000 });
           let response = JSON.parse(err._body);
           for (let field of Object.keys(response)) {
-            this.flashMessagesService.show('Campo ' + field + ': ' + response[field], { cssClass: 'alert-danger', timeout: 10000 });
+            this.flashMessagesService.show(`Campo ${field} : ${response[field]}`, { cssClass: 'alert-danger', timeout: 10000 });
           }
           return false;
         }
@@ -95,12 +93,12 @@ export class EventosConvidadosComponent extends BaseComponent{
   }
 
   excluir(evento_convidado_id) {
+    let conf = confirm("Confirma exclusão do convidado deste evento");
+    if (!conf) return false;
     this.api.deleteEventosConvidados(evento_convidado_id).subscribe(
       (data: any) => {
-        this.flashMessagesService.show('Evento salvo com sucesso!', { cssClass: 'alert-success', timeout: 5000 });
-        setTimeout(() => {
-          location.reload(); // Adicionado para forçar nova requisição e evitar cache
-        }, 2000);
+        this.flashMessagesService.show('Convidado retirado do evento com sucesso!', { cssClass: 'alert-success', timeout: 5000 });
+        this.recarregar_pagina();
       },
       err => {
         this.saving = false;
@@ -109,10 +107,10 @@ export class EventosConvidadosComponent extends BaseComponent{
           return false;
         }
         if (err.status == 422) {
-          this.flashMessagesService.show('Evento não foi salvo!', { cssClass: 'alert-warning', timeout: 5000 });
+          this.flashMessagesService.show('Evento/Convidado não salvo!', { cssClass: 'alert-warning', timeout: 5000 });
           let response = JSON.parse(err._body);
           for (let field of Object.keys(response)) {
-            this.flashMessagesService.show('Campo ' + field + ': ' + response[field], { cssClass: 'alert-danger', timeout: 10000 });
+            this.flashMessagesService.show(`Campo ${field} : ${response[field]}`, { cssClass: 'alert-danger', timeout: 10000 });
           }
           return false;
         }
