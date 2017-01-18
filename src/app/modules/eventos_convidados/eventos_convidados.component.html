@@ -51,19 +51,33 @@
       <td><strong>Credencial</strong></td>
       <td><strong>Obs</strong>.</td>
       <td><strong>Convites</strong></td>
-      <td><strong>Confirmado</strong>?</td>
-      <td><strong>Presença</strong></td>
+      <td>
+        <strong>
+          Confirmado?
+          <span [innerHtml]="ec.confirmado === true ? 'Sim' :  'Não'"></span>
+        </strong>
+      </td>
+      <td>
+        {{ec.hora_chegada}}
+        <strong>
+          Presença?
+          <span [innerHtml]="ec.hora_chegada? 'Sim' :  'Não'"></span>
+        </strong>
+      </td>
     </tr>
     <tr>
       <td>{{ec.convidado.email}}</td>
       <td>{{ec.convidado.telefone}}</td>
       <td>{{ec.credencial.descricao}}</td>
       <td>{{ec.observacoes}}</td>
-      <td> convites X</td>
+      <td>
+        <!-- Convites -->
+        &nbsp;
+      </td>
       <td>
         <span *ngIf="ec.confirmado">{{ec.confirmado}}</span>
         <span *ngIf="!ec.confirmado">
-          <button class="btn btn-success btn-xs">
+          <button on-click="confirmar_presenca(ec.id)" class="btn btn-success btn-xs">
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
             Confirmar
           </button>
@@ -72,7 +86,7 @@
       <td>
         <span *ngIf="ec.hora_chegada">{{ec.hora_chegada}}</span>
         <span *ngIf="!ec.hora_chegada">
-          <button class="btn btn-success btn-xs">
+          <button on-click="marcar_hora(ec.id)" class="btn btn-success btn-xs">
             <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
             Marcar presença</button>
         </span>
