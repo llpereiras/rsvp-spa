@@ -115,11 +115,11 @@ export class ApiService {
   }
 
   public confirmarEventosConvidados (evento_convidado_id) {
-    return this.createRecurso('eventos_convidados_confirmar', evento_convidado_id);
+    return this.updateRecurso('eventos_convidados_confirmar', evento_convidado_id, {});
   }
 
   public registrarPresencaEventosConvidados (evento_convidado_id) {
-    return this.createRecurso('eventos_convidados_registrar_presenca', evento_convidado_id);
+    return this.updateRecurso('eventos_convidados_registrar_presenca', evento_convidado_id, {});
   }
 
   // Delete
