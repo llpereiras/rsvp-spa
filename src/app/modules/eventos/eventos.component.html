@@ -16,7 +16,9 @@
       <td>{{evento.nome}}</td>
       <td>{{evento.data  | date:"dd/MM/yyyy" }}</td>
       <td>
-        <span class="{{evento.vigente | eventos_status}} col-md-5"><strong>{{evento.vigente | capitalize}}</strong></span>
+        <span class="{{evento.vigente | eventos_status}} col-md-5 col-xs-10">
+          <strong>{{evento.vigente | capitalize}}</strong>
+        </span>
       </td>
       <td>
         <button class="btn btn-info" routerLink="/eventos/{{evento.id}}/add_convidado">
