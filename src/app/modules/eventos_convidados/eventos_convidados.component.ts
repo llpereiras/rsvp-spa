@@ -130,7 +130,7 @@ export class EventosConvidadosComponent extends BaseComponent{
     if (!conf) return false;
     this.api.registrarPresencaEventosConvidados(evento_convidado_id).subscribe(
       (data: any) => {
-        this.flashMessagesService.show('Hora de cegada do convidado registrada com sucesso!', { cssClass: 'alert-success', timeout: 5000 });
+        this.flashMessagesService.show('Hora de chegada do convidado registrada com sucesso!', { cssClass: 'alert-success', timeout: 5000 });
         this.recarregar_pagina();
       },
       err => {
