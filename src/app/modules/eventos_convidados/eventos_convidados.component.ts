@@ -92,15 +92,62 @@ export class EventosConvidadosComponent extends BaseComponent{
         }
         if (err.status == 422) {
           this.flashMessagesService.show('Evento não foi salvo!', { cssClass: 'alert-warning', timeout: 5000 });
-          let response = JSON.parse(err._body);
-          for (let field of Object.keys(response)) {
-            this.flashMessagesService.show(`Campo ${field} : ${response[field]}`, { cssClass: 'alert-danger', timeout: 10000 });
-          }
+          this.ver_erros_retorno(err._body);
           return false;
         }
       },
       () => {this.saving = false;} // complete
     );
+  }
+
+  confirmar_presenca(evento_convidado_id) {
+    let conf = confirm("Registrar Confirmação do convidado neste evento? ");
+    if (!conf) return false;
+    this.api.confirmarEventosConvidados(evento_convidado_id).subscribe(
+      (data: any) => {
+        this.flashMessagesService.show('Confirmação do convite do convidado registrada com sucesso!', { cssClass: 'alert-success', timeout: 5000 });
+        this.recarregar_pagina();
+      },
+      err => {
+        this.saving = false;
+        if (err.status == 401) {
+          alert('Impossível obter os dados! Tente novamente.');
+          return false;
+        }
+        if (err.status == 422) {
+          this.flashMessagesService.show('Problemas ao registrar alteração!', { cssClass: 'alert-warning', timeout: 5000 });
+          this.ver_erros_retorno(err._body);
+          return false;
+        }
+      },
+      () => {this.saving = false;} // complete
+    );
+  }
+
+  marcar_hora(evento_convidado_id) {
+
+    let conf = confirm("Registrar Confirmação do convidado neste evento? ");
+    if (!conf) return false;
+    this.api.registrarPresencaEventosConvidados(evento_convidado_id).subscribe(
+      (data: any) => {
+        this.flashMessagesService.show('Hora de cegada do convidado registrada com sucesso!', { cssClass: 'alert-success', timeout: 5000 });
+        this.recarregar_pagina();
+      },
+      err => {
+        this.saving = false;
+        if (err.status == 401) {
+          alert('Impossível obter os dados! Tente novamente.');
+          return false;
+        }
+        if (err.status == 422) {
+          this.flashMessagesService.show('Problemas ao registrar alteração!', { cssClass: 'alert-warning', timeout: 5000 });
+          this.ver_erros_retorno(err._body);
+          return false;
+        }
+      },
+      () => {this.saving = false;} // complete
+    );
+
   }
 
   excluir(evento_convidado_id) {
@@ -119,10 +166,7 @@ export class EventosConvidadosComponent extends BaseComponent{
         }
         if (err.status == 422) {
           this.flashMessagesService.show('Evento/Convidado não salvo!', { cssClass: 'alert-warning', timeout: 5000 });
-          let response = JSON.parse(err._body);
-          for (let field of Object.keys(response)) {
-            this.flashMessagesService.show(`Campo ${field} : ${response[field]}`, { cssClass: 'alert-danger', timeout: 10000 });
-          }
+          this.ver_erros_retorno(err._body);
           return false;
         }
       },
