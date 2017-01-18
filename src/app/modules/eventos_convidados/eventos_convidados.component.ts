@@ -31,7 +31,7 @@ export class EventosConvidadosComponent extends BaseComponent{
       );
 
       // Busca os convidados do evento selecionado
-      this.api.getEventosConvidados().subscribe(
+      this.api.getEventosConvidadosByEvento(evento_id).subscribe(
         (eventos_convidados: any) => {
           this.eventos_convidados = eventos_convidados;
         },
