@@ -110,6 +110,14 @@ export class ApiService {
     return this.updateRecurso('credenciais', credencial.credencial.id, credencial);
   }
 
+  public confirmarEventosConvidados (evento_convidado_id) {
+    return this.createRecurso('eventos_convidados_confirmar', evento_convidado_id);
+  }
+
+  public registrarPresencaEventosConvidados (evento_convidado_id) {
+    return this.createRecurso('eventos_convidados_registrar_presenca', evento_convidado_id);
+  }
+
   // Delete
   public deleteEventos (evento_id) {
     return this.deleteRecurso('eventos', evento_id);
