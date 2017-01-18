@@ -10,7 +10,8 @@ export class ApiConfig {
             eventos: '/eventos',
             convidados: '/convidados',
             credenciais: '/credenciais',
-            eventos_convidados: '/eventos_convidados'
+            eventos_convidados: '/eventos_convidados',
+            eventos_convidados_by_evento: '/eventos_convidados/evento'
         };
     }
 
