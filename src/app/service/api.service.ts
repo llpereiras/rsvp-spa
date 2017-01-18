@@ -80,6 +80,10 @@ export class ApiService {
     return this.getRecurso('eventos_convidados', evento_convidado_id);
   }
 
+  public getEventosConvidadosByEvento (evento_id) {
+    return this.getRecurso('eventos_convidados_by_evento', evento_id);
+  }
+
   // Create
   public createEventos (evento) {
     return this.createRecurso('eventos', evento);
