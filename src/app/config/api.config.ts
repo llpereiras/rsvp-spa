@@ -11,7 +11,9 @@ export class ApiConfig {
             convidados: '/convidados',
             credenciais: '/credenciais',
             eventos_convidados: '/eventos_convidados',
-            eventos_convidados_by_evento: '/eventos_convidados/evento'
+            eventos_convidados_by_evento: '/eventos_convidados/evento',
+            eventos_convidados_confirmar: '/eventos_convidados/confirmar',
+            eventos_convidados_registrar_presenca: '/eventos_convidados/presenca'
         };
     }
 
