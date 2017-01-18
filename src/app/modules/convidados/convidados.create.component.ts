@@ -32,10 +32,7 @@ export class ConvidadoCreateComponent extends BaseComponent{
         }
         if (err.status == 422) {
           this.flashMessagesService.show('Convidado não foi salvo!', { cssClass: 'alert-warning', timeout: 5000 });
-          let response = JSON.parse(err._body);
-          for (let field of Object.keys(response)) {
-            this.flashMessagesService.show('Campo ' + field + ': ' + response[field], { cssClass: 'alert-danger', timeout: 10000 });
-          }
+          this.ver_erros_retorno(err._body);
           return false;
         }
       },
