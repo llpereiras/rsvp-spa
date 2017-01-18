@@ -47,4 +47,11 @@ export class BaseComponent {
     }, tempo_relogar);
   }
 
+  ver_erros_retorno(_body) {
+    let response = JSON.parse(_body);
+    for (let field of Object.keys(response)) {
+      this.flashMessagesService.show(`${field}: ${response[field]}`, { cssClass: 'alert-danger', timeout: 10000 });
+    }
+  }
+
 }
