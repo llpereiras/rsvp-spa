@@ -9,12 +9,15 @@ import { SessionStorageService } from 'ng2-webstorage';
 @Injectable()
 export class ApiService {
 
-  constructor(@Inject(ApiConfig) private apiConfig: ApiConfig, private http: Http, private sessionSt:SessionStorageService) {
-  }
+  constructor(@Inject(ApiConfig) private apiConfig: ApiConfig, private http: Http, private sessionSt:SessionStorageService) {}
 
   public authenticate (user: any) {
     return this.http.post(this.apiConfig.url + this.apiConfig.endpoints.login, user)
       .map((data: any) => data.json());
+  }
+
+  public getRandom (){
+    return Math.floor(Math.random() * (5000 - 1 + 1)) + 1;
   }
 
   public createAuthorizationHeader(headers: Headers) {
@@ -22,14 +25,13 @@ export class ApiService {
     headers.append('Authorization', `Basic AUTH-BASIC ${token}`);
   }
 
-
   // Abstratas
   public getRecurso (recurso, recurso_id = 0) {
     let headers = new Headers();
     let url = this.apiConfig.url + this.apiConfig.endpoints[recurso];
     if ( recurso_id > 0 ) url = url + '/' + recurso_id;
     this.createAuthorizationHeader(headers);
-    return this.http.get(url, {
+    return this.http.get(`${url}?r=${this.getRandom()}` , {
         headers: headers
       })
       .map((data: any) => data.json());
@@ -62,7 +64,6 @@ export class ApiService {
       .map((data: any) => data.json());
   }
 
-
   // Get
   public getConvidados(convidado_id = 0){
     return this.getRecurso('convidados', convidado_id);
@@ -82,6 +83,10 @@ export class ApiService {
 
   public getEventosConvidadosByEvento (evento_id) {
     return this.getRecurso('eventos_convidados_by_evento', evento_id);
+  }
+
+  public getAcompanhantes(acompanhante_id = 0){
+    return this.getRecurso('acompanhantes', acompanhante_id);
   }
 
   // Create
