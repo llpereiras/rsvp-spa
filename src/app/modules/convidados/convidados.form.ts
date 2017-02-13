@@ -16,7 +16,8 @@ export class ConvidadoForm {
         "id": [null],
         "nome": [null, Validators.required],
         "email": [null, Validators.required],
-        "telefone": [null, Validators.required]
+        "telefone": [null, Validators.required],
+        "mostrar_listagem": [true, Validators.required]
     });
   }
 
@@ -26,6 +27,7 @@ export class ConvidadoForm {
     formConvidado.controls['nome'].setValue(convidado.nome)
     formConvidado.controls['email'].setValue(convidado.email)
     formConvidado.controls['telefone'].setValue(convidado.telefone)
+    formConvidado.controls['mostrar_listagem'].setValue(convidado.mostrar_listagem)
     return formConvidado;
   }
 
