@@ -3,16 +3,23 @@
 </h1>
 
 <form [formGroup]="formConvidado" (ngSubmit)="save()" class="well">
-  <input type="hidden" class="form-control" placeholder="id" formControlName="id">
+  <input type="hidden" formControlName="id" class="form-control" placeholder="id">
   <label>Nome:</label>
-  <input type="text" class="form-control" placeholder="nome" formControlName="nome">
+  <input type="text" formControlName="nome" class="form-control" placeholder="nome" >
   <br>
   <label>Email:</label>
-  <input type="text" class="form-control" placeholder="email" formControlName="email">
+  <input type="text" formControlName="email" class="form-control" placeholder="email">
+  <br>
+  <label>Mostrar na listagem:</label>
+  <select formControlName="mostrar_listagem" class="form-control" >
+    <option value="true">Sim</option>
+    <option value="false" [selected]="acompanhante">Não</option>
+  </select>
   <br>
   <label>Telefone:</label>
-  <input type="text" class="form-control" placeholder="telefone" formControlName="telefone">
+  <input type="text" formControlName="telefone" class="form-control" placeholder="telefone">
   <br>
+
   <button type="submit" [disabled]="!formConvidado.valid" class="btn btn-success" [disabled]="saving">
     <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
     Salvar
