@@ -1,0 +1,26 @@
+<h1>
+  {{title}}
+</h1>
+
+<div class="well">
+  <label for="search_convidado">Pesquisar convidado</label>
+  <input class="form-control" [(ngModel)]="acompanhante_selecionado" auto-complete [source]="acompanhantes" />
+  <label for="select_credencial">Selecione a credencial</label>
+  <select class="form-control" [(ngModel)]="credencial_selecionada">
+    <option *ngFor="let credencial of credenciais" [value]="credencial.id">{{credencial.descricao}}</option>
+  </select>
+  <br>
+  <input type="hidden" [(ngModel)]="convidado_pai" />
+  <br>
+  <button type="button" class="btn btn-success" on-click="add(evento_selecionado)" [disabled]="saving" >
+    <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Adicionar
+  </button>
+  <button type="button" class="btn btn-warning pull-right" on-click="convidado_selecionado = ''" >
+    <i class="fa fa-eraser" aria-hidden="true"></i>
+    Limpar consulta
+  </button>
+  <button type="button" class="btn btn-info pull-right" style="margin-right:20px;" data-toggle="modal" data-target="#myModal" >
+    <i class="fa fa-eraser" aria-hidden="true"></i>
+    Novo convidado
+  </button>
+</div>
