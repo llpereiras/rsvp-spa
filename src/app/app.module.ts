@@ -20,6 +20,8 @@ import { Injector } from "@angular/core";
 import { ServiceLocator } from './service_locator';
 import { BaseComponent } from './modules/base.component';
 import { CapitalizePipe } from './pipes/capitalize';
+import { ApenasConvidadosPipe } from './pipes/apenas_convidados';
+import { ApenasAcompanhantesPipe } from './pipes/apenas_acompanhantes';
 
 // Module Auth
 import { LoginComponent } from './modules/auth/login.component';
@@ -47,7 +49,11 @@ import { CredencialCreateComponent } from './modules/credenciais/credenciais.cre
 import { CredencialUpdateComponent } from './modules/credenciais/credenciais.update.component';
 import { CredencialForm } from './modules/credenciais/credenciais.form';
 
+// Module EventosConvidados
 import { EventosConvidadosComponent } from './modules/eventos_convidados/eventos_convidados.component';
+
+// Module EventosAcompanhantes
+import { EventosAcompanhantesComponent } from './modules/eventos_acompanhantes/eventos_acompanhantes.component';
 
 //----------------------------------------------------------------------------
 //Services
@@ -82,6 +88,8 @@ export const AppRoutes: Routes = [
   declarations: [
     AppComponent,
     CapitalizePipe,
+    ApenasConvidadosPipe,
+    ApenasAcompanhantesPipe,
     LoginComponent,
     HomeComponent,
     EventoComponent,
@@ -94,7 +102,8 @@ export const AppRoutes: Routes = [
     CredencialComponent,
     CredencialCreateComponent,
     CredencialUpdateComponent,
-    EventosConvidadosComponent
+    EventosConvidadosComponent,
+    EventosAcompanhantesComponent
   ],
   imports: [
     BrowserModule,
